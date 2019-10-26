@@ -1,0 +1,287 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>پرداخت | {{title}}</title>
+        <!-- Core CSS - Include with every page -->
+        
+        <!-- <link href="{% static 'css/fonts.css' %}" rel="stylesheet"> -->
+        <link href="{% static 'css/payment.css' %}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <style>
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: 900;
+                src: url("{% static 'fonts/eot/IRANSansWeb_Black.eot' %}");
+                src: url("{% static 'fonts/eot/IRANSansWeb_Black.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/IRANSansWeb_Black.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/IRANSansWeb_Black.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/IRANSansWeb_Black.ttf' %}") format('truetype');
+            }
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: bold;
+                src: url("{% static 'fonts/eot/IRANSansWeb_Bold.eot' %}");
+                src: url("{% static 'fonts/eot/IRANSansWeb_Bold.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/IRANSansWeb_Bold.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/IRANSansWeb_Bold.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/IRANSansWeb_Bold.ttf' %}") format('truetype');
+            }
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: 500;
+                src: url("{% static 'fonts/eot/IRANSansWeb_Medium.eot' %}");
+                src: url("{% static 'fonts/eot/IRANSansWeb_Medium.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/IRANSansWeb_Medium.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/IRANSansWeb_Medium.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/IRANSansWeb_Medium.ttf' %}") format('truetype');
+            }
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: 300;
+                src: url("{% static 'fonts/eot/IRANSansWeb_Light.eot' %}");
+                src: url("{% static 'fonts/eot/IRANSansWeb_Light.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/IRANSansWeb_Light.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/IRANSansWeb_Light.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/IRANSansWeb_Light.ttf' %}") format('truetype');
+            }
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: 200;
+                src: url("{% static 'fonts/eot/IRANSansWeb_UltraLight.eot' %}");
+                src: url("{% static 'fonts/eot/IRANSansWeb_UltraLight.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/IRANSansWeb_UltraLight.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/IRANSansWeb_UltraLight.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/IRANSansWeb_UltraLight.ttf' %}") format('truetype');
+            }
+            @font-face {
+                font-family: IRANSans;
+                font-style: normal;
+                font-weight: normal;
+                src: url("{% static 'fonts/eot/IRANSansWeb.eot' %}");
+                src: url("{% static 'fonts/eot/IRANSansWeb.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/IRANSansWeb.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/IRANSansWeb.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/IRANSansWeb.ttf' %}") format('truetype');
+            }
+
+        </style>
+    </head>
+    <body class="rtl {{state}}">
+        <div id="topPage" style="background-color: {{background_color}};">
+			<table class="logoPlate nameLogoBox">
+                <tr>
+                    <td class="logoBox">
+                        {% if logo %}
+                            <img src="{{logo}}" />
+                        {% else %}
+                        <img src="{% static 'images/logo.png' %}">
+                        {% endif %}
+                    </td>
+                    <td class="nameBox" style="color: {{text_color}};">
+                        <p>{{title}}</p>
+                    </td>
+                </tr>
+            </table>
+            <form action="{{url}}" method="post">
+			{% if state == 'paid' %}
+			<div class="detailPlate center big">
+			{% else %}
+			<div class="detailPlate center">
+            {% endif %}
+                {% if state == 'not_found' %}
+                <div class="box">
+                    <div class="errorDetailBox">
+						<p class="text">
+                        تراکنش مورد یافت نشد و یا زمان پرداخت آن گذشته است.
+                        <br/>
+                        لطفا مجدد تلاش کنید.
+						</p>
+                    </div>
+			    </div>
+                {% else %}
+                
+                    <div class="box">
+                        {% if state == 'paid' %}
+                        <div class="payed">
+                            <img class="photo" src="{% static 'images/svg/payed.svg' %}">
+                            <div class="detail">
+                                <p>	
+                                <span>کد رهگیری: {{trace_no}}</span>
+                                <br/>
+                                <span>{{date}}</span>
+                                </p>
+                            </div>
+                        </div>
+                        {% elif state == 'rejected' %}
+                            <div class="payed">
+                                <img class="photo" src="{% static 'images/svg/cancel.svg' %}">
+                            </div>
+                            <div class="errorDetailBox">
+                                <p class="text small">
+                                پرداخت با مشکل مواجه شد. در صورتی که مبلغ پرداخت از حساب شما کسر شده است، حد اکثر تا ۷۲ ساعت به حساب شما باز خواهد گشت.
+                                </p>
+                            </div>
+                            
+                        {% endif %}
+                        {% if state == 'error' %}
+                        <div class="errorDetailBox">
+                            <p class="text">
+                            {{message}}
+                            </p>
+                        </div>
+                        {% endif %}
+                        {% if amount %}
+                        <table class="amountBox">
+                            <tr class="big">
+                                <td>
+                                    <p style="color: {{text_color}};">{{amount}} ریال</p>
+                                </td>
+                            </tr>
+                            {% if wage %}
+                            <tr class="small">
+                                <td class="wageBox">
+                                    <p style="color: {{text_color}};">+ {{wage}} کارمزد ریال</p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            
+                        </table>
+                        <input name="amount" value="{{amount_value}}" hidden />
+                        {% else %}
+                        <table class="amountBox">
+                            <tr class="big">
+                                <td>
+                                    <input name="amount" />
+                                </td>
+                                <td>
+                                    <p style="color: {{text_color}};"> ریال</p>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        {% endif %}
+                        
+                        <table class="iconTextBox">
+                            {% if gateway %}
+                            <tr>
+                                <td class="iconBox">
+                                    <img src="{% static 'images/svg/account.svg' %}">
+                                </td>
+                                <td class="textBox">
+                                    <p style="color: {{text_color}};">{{gateway.title}}</p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if payer %}
+                            <tr>
+                                <td class="iconBox">
+                                    <img src="{% static 'images/svg/user.svg' %}">
+                                </td>
+                                <td class="textBox">
+                                    <p style="color: {{text_color}};">{{payer}}</p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if note %}
+                            <tr>
+                                <td class="iconBox">
+                                    <img src="{% static 'images/svg/subject.svg' %}">
+                                </td>
+                                <td class="textBox">
+                                    <p style="color: {{text_color}};">{{note}}</p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                        {% if gateways %}
+                            <div class="centerPlate">
+                                <select class="chooseGateway" name="gateway">
+                                    {% for item in gateways %}
+                                        <option value="{{item.id}}">{{item.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input name="gateway" value="{{gateway.id}}"  hidden/>
+                        {% endif %}
+                        {% if continue_url %}
+                        
+                        <table class="payButtonBox">
+                            <tr>
+                                <td class="loaderBox">
+                                    <div id="loading" class="spinner hide"><i></i></div>
+                                </td>
+                                <td class="buttonBox">
+                                    <a href="{{continue_url}}" onclick="showLoading()">ادامه</a>
+                                </td>
+                                <td class="loaderBox">
+                                </td>
+                            </tr>
+                        </table>
+                        {% endif %}
+                        {% if state == 'pay' or state == 'error'%}
+                        
+                        <table class="payButtonBox">
+                            <tr>
+                                <td class="loaderBox">
+                                    <div id="loading" class="spinner hide"><i></i></div>
+                                </td>
+                                <td class="buttonBox">
+                                    <button type="submit" onclick="showLoading()">پرداخت</button>
+                                </td>
+                                <td class="loaderBox">
+                                </td>
+                            </tr>
+                        </table>
+                        {% endif %}
+                    </div>
+                
+                {% endif %}
+            </div>
+        </form>
+		{% if state == 'paid' %}
+			<img onclick="printDiv()" class="printButton" src="{% static 'images/svg/print.svg' %}">
+		{% endif %}
+		</div>
+		{% if state == 'paid' %}
+		<div id="printPlate">
+			<h2 class="orgName">پرداخت</h2>
+			<p class="subtitle">رسید پرداخت موفقیت آمیز قبض با مشخصات زیر در درگاه پرداخت {{title}}</p>
+			<img class="logo" src="{{logo}}">
+			<h3 class="sectionTitle double">
+				رسید پرداخت
+			</h3>
+			<p class="info">مبلغ: {{amount}} ریال</p>
+			{% if wage %}
+			<p class="info">کارمزد: {{wage}} ریال</p>
+			{% endif %}
+			<p class="info">تاریخ: {{date}}</p>
+            <p class="info">کد رهگیری: {{trace_no}}</p>
+            {% if subject %}
+            <p class="info">بابت: {{subject}}</p>
+            {% endif %}
+            {% if link %}
+            <p class="info">لینک: <a href="{{url}}">{{url}}</a></p>
+            {% endif %}
+        </div>
+        {% endif %}
+        <script src = "{% static 'js/jquery.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.chooseGateway').select2();
+            });
+            function printDiv() {
+				window.print();
+			}
+        </script>
+    </body>
+</html>
