@@ -11,6 +11,7 @@ Currently supported gateways are:
 - [ ] Sep (Saman Bank)
 - [ ] AP (Asan Pardakht)
 - [ ] Eghtesad Novin
+- [ ] Mellat
 - [ ] Paypal
 
 ## Dependencies
