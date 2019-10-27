@@ -19,7 +19,7 @@ You need `Postgres` and `Redis` to using open pay. You can install them from the
 * [Postgres](https://www.postgresql.org/docs/12/install-procedure.html)
 * [Redis](https://redis.io/topics/quickstart)
 
-## Usage
+## Run
 
 You can run it with docker using this [image](https://hub.docker.com/r/thesinner/open-pay) or this [repo](https://github.com/theSinner/open-pay-docker).
 
@@ -71,7 +71,19 @@ $ python manage.py runserver
 $ uwsgi --http :8100 --wsgi-file pay/wsgi.py --master --processes 6 --threads 2
 ```
 
+## How to use it
+There are few ways to handle payments. The entities are:
 
+### Gateway
+Gateways are methods that provide payments. Currently we support only [Bahamta](https://bahamta.com) type gateways. You can add gateways to use them to pay.
+
+### Form
+Forms are for making templates to generate payments. You can have a fixed or dyanmic amount that users enter it before pay or you can set one or more gateways to be available for users.
+
+### Transaction
+Transactions are payment logs. Pending payments are stored in Redis, but successful or rejected payments store in database.
+
+  
 
 ## Contribution
 Any idea is very welcomed and feel free to contribute your or other's ideas.
