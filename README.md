@@ -75,5 +75,5 @@ $ uwsgi --http :8100 --wsgi-file pay/wsgi.py --master --processes 6 --threads 2
 
 ## Contribution
 Any idea is very welcomed and feel free to contribute your or other's ideas.
-To submit ideas, please submit an issue with `idea` and if its an improvment, tag it with `improvment` or if its a bug, tag it with `bug`.
-if you have fixed an issue, please send a PR and I merge it if its possible.
+To submit ideas, please submit an issue with `idea` and if its an improvement, tag it with `improvement` or if its a bug, tag it with `bug`.
+if you have fixed an issue, please send a PR and I merge it if it's possible.
