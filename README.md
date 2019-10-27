@@ -74,6 +74,9 @@ $ uwsgi --http :8100 --wsgi-file pay/wsgi.py --master --processes 6 --threads 2
 ## How to use it
 There are few ways to handle payments. The entities are:
 
+### Application
+Applications are for set tokens for using web APIs.
+
 ### Gateway
 Gateways are methods that provide payments. Currently we support only [Bahamta](https://bahamta.com) type gateways. You can add gateways to use them to pay.
 
@@ -83,6 +86,37 @@ Forms are for making templates to generate payments. You can have a fixed or dya
 ### Transaction
 Transactions are payment logs. Pending payments are stored in Redis, but successful or rejected payments store in database.
 
+
+### Create Request
+You can make request with api.
+```
+curl -X POST \
+  https://openpay.ajorloo.com/api/transaction/make \
+  -H 'Access-Token: YOUR_APPLICATION_ACCESS_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"amount": 10000,
+	"currency": "irr",
+	"gateway_id": 1,
+    "continue_url": "https://google.com",
+    "phone_number": "989xxxxxxxxx",
+    "email" : "amirajorloo@gmail.com",
+    "username" : "fdsfsewrwer423423o4iewor3",
+  }'
+```
+
+The `currency` parameter is required and others are optional parameters. If you send `amount`, the amount is fixed and if amount is empty, amount is dyanmic and user will enter it and if you send `gateway_id`, the payment transaction will be fixed and if not, user should choose from gateways with entered `currency`. The `continue_url` is the url that show to user when payment is completed. `phone_number`, `email`, and `username` are fields for set user for transaction. if all of them is empty or username doesn't exist in user database, create new user and set transaction to it.
+
+### Get Transaction Detail
+You can get transaction detail with this endpoint.
+```
+curl -X GET \
+  https://openpay.ajorloo.com/api/transaction/item?ref_num=xxXXxxXXxx \
+  -H 'Access-Token: YOUR_APPLICATION_ACCESS_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+```
   
 
 ## Contribution
