@@ -13,6 +13,12 @@ Currently supported gateways are:
 - [ ] Eghtesad Novin
 - [ ] Paypal
 
+## Dependencies
+You need `Postgres` and `Redis` to using open pay. You can install them from these links:
+
+* [Postgres](https://www.postgresql.org/docs/12/install-procedure.html)
+* [Redis](https://redis.io/topics/quickstart)
+
 ## Usage
 
 You can run it with docker using this [image](https://hub.docker.com/r/thesinner/open-pay) or this [repo](https://github.com/theSinner/open-pay-docker).
@@ -20,8 +26,7 @@ You can run it with docker using this [image](https://hub.docker.com/r/thesinner
 Anyway if you want to run it as a Django project, you can run it like this:
 
 ### Installing python-pip
-```
-```
+You can install python pip based on your OS with this [instruction](https://pip.pypa.io/en/stable/installing/)
 
 ### Installing virtualenv
 ```
