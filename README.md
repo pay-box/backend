@@ -6,7 +6,7 @@
 Open pay is a service for handling payments with multiple gateways.
 Currently supported gateways are:
 
-- [x] Bahamta
+- [x] [Bahamta](https://bahamta.com)
 - [ ] Zarin pal
 - [ ] Sep (Saman Bank)
 - [ ] AP (Asan Pardakht)
