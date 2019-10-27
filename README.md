@@ -15,17 +15,56 @@ Currently supported gateways are:
 
 ## Usage
 
-### Run with docker (Recommended)
-You can pull [docker image from docker hub](https://hub.docker.com/r/thesinner/open-pay) and run it with `docker-compose` like this:
+You can run it with docker using this [image](https://hub.docker.com/r/thesinner/open-pay) or this [repo](https://github.com/theSinner/open-pay-docker).
 
+Anyway if you want to run it as a Django project, you can run it like this:
+
+### Installing python-pip
 ```
-$ cd docker
-$ export PUBLISHED_PORT=6000
-$ docker-compose run -d api
 ```
 
-### Run as a Django project
-You can pull [Django standalone repo](https://github.com/theSinner/open-pay) and run it with as a django. Read more in [this repo](https://github.com/theSinner/open-pay).
+### Installing virtualenv
+```
+$ pip install virtualenv
+```
+
+### Create a virtualenv
+```
+$ virtualenv -ppython3 venv
+```
+
+### Install dependencies
+```
+$ source venv/bin/activate
+$ pip install -r requirements.pip
+```
+
+### Set envrionment variables
+There are some envrionment variable to configure:
+
+|Name|Description|Defalut|
+|--|--|--|
+|BASE_URL|the base url that using in generate websites  |-|
+|DEBUG_VALUE|Set debug mode. set TRUE or FALSE|FALSE|
+|REDIS_HOST|Redis host|redis|
+|REDIS_PORT|Redis port|6379|
+|DB_HOST|Postgres database host|db|
+|DB_PORT|Postgres database port|5432|
+|DB_NAME|Postgres database name|pay|
+|MEDIA_ROOT|media folder in project root|media|
+|STATIC_ROOT|static folder in project root|static|
+
+
+### Run project
+
+#### Debug mode
+```
+$ python manage.py runserver
+```
+#### Release mode
+```
+$ uwsgi --http :8100 --wsgi-file pay/wsgi.py --master --processes 6 --threads 2
+```
 
 
 
