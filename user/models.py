@@ -78,7 +78,7 @@ class Application(models.Model):
 
 
 class Config(models.Model):
-    title = models.CharField(max_length=300)
+    title = models.CharField(max_length=300, null=True, blank=True)
     logo = models.ImageField(null=True, blank=True)
     background_color = ColorField(default='#327F8F')
     paid_background_color = ColorField(default='#45c175')
@@ -97,4 +97,8 @@ class Config(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return self.title or "Config"
+
+    @classmethod
+    def get(self):
+        return Config.objects.order_by('-modified_at').first()

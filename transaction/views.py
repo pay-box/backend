@@ -7,7 +7,7 @@ from . import serializers
 from django.conf import settings
 from drf_yasg.utils import swagger_auto_schema
 from gateway.models import Gateway
-from user.models import User
+from user.models import User, Config
 from transaction.models import Transaction
 from django.core.cache import cache
 from django.http import HttpResponseRedirect
@@ -256,6 +256,7 @@ class TransactionCallbackView(APIView):
 def transaction_payment_view(request, ref_num):
     if request.method == "GET":
         context = {}
+        config = Config.get()
         temp_transaction = cache.get("transaction:%s" % (
                 ref_num
             )
@@ -295,6 +296,7 @@ def transaction_payment_view(request, ref_num):
                     'gateways': gateways,
                     'user': user,
                     'note': transaction.get('note', None),
+                    'background_color': config.pay_background_color,
                     'url': url,
                     # 'form': transaction.form,
                     'currency': transaction['currency'].upper(),
@@ -302,24 +304,27 @@ def transaction_payment_view(request, ref_num):
                     'title': transaction['title'],
                     'logo': transaction['logo'],
                 }
-                print(context)
                 return render(request, 'transaction/pay.html', context)
         else:
             transaction = Transaction.get(ref_num=ref_num)
 
         if transaction is None:
             context = {
-                'state': 'not_found'
+                'state': 'not_found',
+                'background_color': config.error_background_color,
             }
             return render(request, 'transaction/pay.html', context)
         # print(transaction)
         payer = get_payer_name(transaction.user)
-
+        background_color = config.paid_background_color,
+        if transaction.status == 'rejected':
+            background_color = config.error_background_color,
         context = {
             'state': transaction.status,
             'amount': humanizeAmount(transaction.amount),
             'gateway': transaction.gateway,
             'user': transaction.user,
+            'background_color': background_color[0],
             'form': transaction.form,
             'currency': transaction.currency.upper(),
             'trace_no': persianiser(
@@ -353,6 +358,7 @@ def transaction_payment_view(request, ref_num):
             ref_num
         )
         transaction = None
+        config = Config.get()
         if temp_transaction is not None:
             transaction = json.loads(temp_transaction)
             amount = request.data.get('amount', None)
@@ -378,6 +384,7 @@ def transaction_payment_view(request, ref_num):
                 'amount_value': transaction['amount'],
                 'gateway': gateway,
                 'gateways': gateways,
+                'background_color': config.pay_background_color,
                 'note': transaction.get('note', None),
                 'user': user,
                 'url': url,
@@ -433,6 +440,7 @@ def transaction_payment_view(request, ref_num):
                 return HttpResponseRedirect(url)
         else:
             context = {
-                'state': 'not_found'
+                'state': 'not_found',
+                'background_color': config.error_background_color,
             }
             return render(request, 'transaction/pay.html', context)

@@ -4,7 +4,7 @@ from django.conf import settings
 from form.models import Form
 from gateway.models import Gateway
 from transaction.models import Transaction
-from user.models import User
+from user.models import User, Config
 from pay.utils import (
     humanizeAmount,
     persianiser
@@ -17,6 +17,7 @@ def form_form_view(request, id, random):
     if request.method == "GET":
         context = {}
         form = Form.get(id, random)
+        config = Config.get()
         if form:
             url = '%s/form/%s/%s' % (
                 settings.BASE_URL,
@@ -37,6 +38,7 @@ def form_form_view(request, id, random):
             else:
                 context = {
                     'state': 'not_found',
+                    'background_color': config.error_background_color,
                     'error': 'در حال حاضر امکان پرداخت در'
                              ' این درگاه وجود ندارد.'
                 }
@@ -66,6 +68,7 @@ def form_form_view(request, id, random):
             return render(request, 'transaction/pay.html', context)
     else:
         form = Form.get(id, random)
+        config = Config.get()
         if form:
             url = '%s/form/%s/%s' % (
                 settings.BASE_URL,
@@ -86,6 +89,7 @@ def form_form_view(request, id, random):
             else:
                 context = {
                     'state': 'not_found',
+                    'background_color': config.error_background_color,
                     'error': 'در حال حاضر امکان پرداخت در'
                              ' این درگاه وجود ندارد.'
                 }
