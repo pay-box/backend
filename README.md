@@ -1,9 +1,9 @@
-# Open pay
+# Pay Box
 
 
-[![DockerHub](https://img.shields.io/docker/pulls/thesinner/open-pay.svg)](https://hub.docker.com/r/thesinner/open-pay) [![Travis](https://travis-ci.org/theSinner/open-pay.svg?branch=master)](https://travis-ci.org/theSinner/open-pay#) ![Commit](https://img.shields.io/github/last-commit/theSinner/open-pay)
+[![DockerHub](https://img.shields.io/docker/pulls/pay-box/backend.svg)](https://hub.docker.com/r/pay-box/backend) [![Travis](https://travis-ci.org/pay-box/backend.svg?branch=master)](https://travis-ci.org/pay-box/backend#) ![Commit](https://img.shields.io/github/last-commit/pay-box/backend)
 
-Open pay is a service for handling payments with multiple gateways.
+Pay Box is a service for handling payments with multiple gateways.
 Currently supported gateways are:
 
 - [x] [Bahamta](https://bahamta.com)
@@ -15,14 +15,14 @@ Currently supported gateways are:
 - [ ] Paypal
 
 ## Dependencies
-You need `Postgres` and `Redis` to use open pay. You can install them from these links:
+You need `Postgres` and `Redis` to use pay box. You can install them from these links:
 
 * [Postgres](https://www.postgresql.org/docs/12/install-procedure.html)
 * [Redis](https://redis.io/topics/quickstart)
 
 ## Run
 
-You can run it with docker using this [image](https://hub.docker.com/r/thesinner/open-pay) or this [repo](https://github.com/theSinner/open-pay-docker).
+You can run it with docker using this [image](https://hub.docker.com/r/pay-box/backend) or this [repo](https://github.com/pay-box/backend-docker).
 
 If you want to run it as a Django project, you can follow these instructions:
 
