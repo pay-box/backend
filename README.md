@@ -1,7 +1,7 @@
 # Pay Box
 
 
-[![DockerHub](https://img.shields.io/docker/pulls/pay-box/backend.svg)](https://hub.docker.com/r/pay-box/backend) [![Travis](https://travis-ci.org/pay-box/backend.svg?branch=master)](https://travis-ci.org/pay-box/backend#) ![Commit](https://img.shields.io/github/last-commit/pay-box/backend)
+[![DockerHub](https://img.shields.io/docker/pulls/thesinner/pay-box.svg)](https://hub.docker.com/r/thesinner/pay-box) [![Travis](https://travis-ci.org/pay-box/backend.svg?branch=master)](https://travis-ci.org/pay-box/backend#) ![Commit](https://img.shields.io/github/last-commit/pay-box/backend)
 
 Pay Box is a service for handling payments with multiple gateways.
 Currently supported gateways are:
@@ -22,7 +22,7 @@ You need `Postgres` and `Redis` to use pay box. You can install them from these 
 
 ## Run
 
-You can run it with docker using this [image](https://hub.docker.com/r/pay-box/backend) or this [repo](https://github.com/pay-box/backend-docker).
+You can run it with docker using this [image](https://hub.docker.com/r/thesinner/pay-box) or this [repo](https://github.com/pay-box/backend-docker).
 
 If you want to run it as a Django project, you can follow these instructions:
 
