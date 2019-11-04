@@ -12,6 +12,7 @@ from transaction.models import Transaction
 from django.core.cache import cache
 from django.http import HttpResponseRedirect
 from pay.decorators import app_has_permission
+from django.utils.translation import ugettext_lazy as _
 from pay.utils import (
     humanizeAmount,
     getJalaliDate,
@@ -129,9 +130,11 @@ class TransactionMakeView(APIView):
                         None
                     ),
                 )
+                print(user)
                 transaction = Transaction.make_request(
                     amount=serializer.validated_data.get('amount', None),
                     currency=serializer.validated_data['currency'],
+                    note=serializer.validated_data.get('note', None),
                     user=user,
                     gateways=gateways_query,
                     application=request.application,
@@ -291,13 +294,15 @@ def transaction_payment_view(request, ref_num):
                     'gateway': gateway,
                     'gateways': gateways,
                     'user': user,
+                    'note': transaction.get('note', None),
                     'url': url,
                     # 'form': transaction.form,
-                    'currency': transaction['currency'],
+                    'currency': transaction['currency'].upper(),
                     'payer': payer,
                     'title': transaction['title'],
                     'logo': transaction['logo'],
                 }
+                print(context)
                 return render(request, 'transaction/pay.html', context)
         else:
             transaction = Transaction.get(ref_num=ref_num)
@@ -316,7 +321,7 @@ def transaction_payment_view(request, ref_num):
             'gateway': transaction.gateway,
             'user': transaction.user,
             'form': transaction.form,
-            'currency': transaction.currency,
+            'currency': transaction.currency.upper(),
             'trace_no': persianiser(
                 '%s-%d' % (transaction.random, transaction.id)
             ),
@@ -339,23 +344,95 @@ def transaction_payment_view(request, ref_num):
             context['continue_url'] = transaction.details['continue_url']
         return render(request, 'transaction/pay.html', context)
     else:
-        amount = request.data.get('amount', None)
-        gateway_id = request.data.get('gateway', None)
-        gateways_query = Gateway.list(
-            gateway_id,
-        )
-        if amount:
-            amount = int(amount)
-        transaction = Transaction.update_request(
-                    ref_num,
-                    amount=amount,
-                    gateways=gateways_query,
-                )
-        if 'url' in transaction and transaction['url']:
-            return HttpResponseRedirect(transaction['url'])
-        else:
-            url = '%s/transaction/payment/%s' % (
-                settings.BASE_URL,
+        temp_transaction = cache.get("transaction:%s" % (
                 ref_num
             )
-            return HttpResponseRedirect(url)
+        )
+        url = '%s/transaction/payment/%s' % (
+            settings.BASE_URL,
+            ref_num
+        )
+        transaction = None
+        if temp_transaction is not None:
+            transaction = json.loads(temp_transaction)
+            amount = request.data.get('amount', None)
+            gateway_id = request.data.get('gateway', None)
+            user = User.get_user(username=transaction['username'])
+            payer = get_payer_name(user)
+            gateway = None
+            gateways = []
+            if 'gateway' in transaction and transaction['gateway']:
+                gateway = Gateway.objects.filter(
+                    id=transaction['gateway']
+                ).first()
+            else:
+                gateways = Gateway.objects.filter(
+                    currency=transaction['currency']
+                ).all()
+            amount_str = None
+            if transaction['amount']:
+                amount_str = humanizeAmount(transaction['amount'])
+            context = {
+                'state': 'pay',
+                'amount': amount_str,
+                'amount_value': transaction['amount'],
+                'gateway': gateway,
+                'gateways': gateways,
+                'note': transaction.get('note', None),
+                'user': user,
+                'url': url,
+                # 'form': transaction.form,
+                'currency': transaction['currency'].upper(),
+                'payer': payer,
+                'title': transaction['title'],
+                'logo': transaction['logo'],
+            }
+            if amount is None or not amount:
+                context['message'] = _('Please enter a valid amount.')
+                return render(request, 'transaction/pay.html', context)
+            if gateway_id is None:
+                context['message'] = _('Please choose a gateway.')
+                return render(request, 'transaction/pay.html', context)
+            if int(amount) < settings.MIN_PAYMENT_AMOUNT:
+                context['message'] = _(
+                    'The minimum acceptable price is %(amount) %(currency)'
+                ) % {
+                    'amount': persianiser(
+                        humanizeAmount(settings.MIN_PAYMENT_AMOUNT)
+                    ),
+                    'currency': transaction['currency'].upper()
+                }
+                return render(request, 'transaction/pay.html', context)
+            if int(amount) > settings.MAX_PAYMENT_AMOUNT:
+                context['message'] = _(
+                    'The maximum acceptable price is %(amount) %(currency)'
+                ) % {
+                    'amount': persianiser(
+                        humanizeAmount(settings.MAX_PAYMENT_AMOUNT)
+                    ),
+                    'currency': transaction['currency'].upper()
+                }
+                return render(request, 'transaction/pay.html', context)
+            gateways_query = Gateway.list(
+                gateway_id,
+            )
+            if amount:
+                amount = int(amount)
+            transaction = Transaction.update_request(
+                        ref_num,
+                        amount=amount,
+                        gateways=gateways_query,
+                    )
+            if 'url' in transaction and transaction['url']:
+                return HttpResponseRedirect(transaction['url'])
+            else:
+                url = '%s/transaction/payment/%s' % (
+                    settings.BASE_URL,
+                    ref_num
+                )
+                return HttpResponseRedirect(url)
+        else:
+            context = {
+                'state': 'not_found'
+            }
+            return render(request, 'transaction/pay.html', context)

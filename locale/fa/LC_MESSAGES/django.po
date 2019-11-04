@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-03 17:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gateway/constants.py:4
+msgid "Bahamta"
+msgstr "باهمتا"
+
+#: pay/constants.py:4
+msgid "IRR"
+msgstr "ریال"
+
+#: pay/constants.py:5
+msgid "USD"
+msgstr "دلار"
+
+#: pay/constants.py:6
+msgid "EUR"
+msgstr "یورو"
+
+#: pay/constants.py:7
+msgid "BTC"
+msgstr "بیت‌کوین"
+
+#: pay/settings.py:182
+msgid "English"
+msgstr "انگلیسی"
+
+#: pay/settings.py:183
+msgid "Farsi"
+msgstr "فارسی"
+
+#: pay/settings.py:184
+msgid "Arabic"
+msgstr "عربی"
+
+#: pay/settings.py:185
+msgid "Swedish"
+msgstr "سوئدی"
+
+#: pay/settings.py:186
+msgid "French"
+msgstr "فرانسوی"
+
+#: pay/settings.py:187
+msgid "Espanol"
+msgstr ""
+
+#: templates/transaction/pay.html:137 templates/transaction/pay.html:258
+msgid "trace_no"
+msgstr "کد رهگیری"
+
+#: templates/transaction/pay.html:175 templates/transaction/pay.html:255
+msgid "wage"
+msgstr "کارمزد"
+
+#: templates/transaction/pay.html:185 templates/transaction/pay.html:186
+#: templates/transaction/pay.html:253
+msgid "amount"
+msgstr "مبلغ"
+
+#: templates/transaction/pay.html:191
+msgid "gateway"
+msgstr "درگاه پرداخت"
+
+#: templates/transaction/pay.html:210
+msgid "continue"
+msgstr "ادامه"
+
+#: templates/transaction/pay.html:235
+msgid "pay"
+msgstr "پرداخت"
+
+#: templates/transaction/pay.html:251
+msgid "payment_bill"
+msgstr "رسید پرداخت"
+
+#: templates/transaction/pay.html:257
+msgid "date"
+msgstr "تاریخ"
+
+#: templates/transaction/pay.html:263
+msgid "link"
+msgstr "لینک"
+
+#: transaction/views.py:391
+msgid "Please enter a valid amount."
+msgstr "لطفا یک مبلغ معتبر وارد کنید."
+
+#: transaction/views.py:394
+msgid "Please choose a gateway."
+msgstr "لطفا یک درگاه انتخاب کنید."
+
+#: transaction/views.py:398
+#, python-format
+msgid "The minimum acceptable price is %(amount) %(currency)"
+msgstr "حداقل مبلغ قابل قبول مبلغ %(amount) %(currency) می‌باشد."
+
+#: transaction/views.py:408
+#, python-format
+msgid "The maximum acceptable price is %(amount) %(currency)"
+msgstr "حداکثر مبلغ قابل قبول مبلغ %(amount) %(currency) می‌باشد."
+
+#: user/models.py:18
+msgid "email address"
+msgstr "ایمیل"
+
+#~ msgid "Pashto"
+#~ msgstr "پشتو"

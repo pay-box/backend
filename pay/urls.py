@@ -21,6 +21,7 @@ from drf_yasg import openapi
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -45,9 +46,15 @@ urlpatterns = [
     path(r'form/', include('form.urls')),
     # path(r'gateway/', include('gateway.urls')),
     path(r'transaction/', include('transaction.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 urlpatterns += static(
     settings.MEDIA_RELATIVE_URL,
     document_root=settings.MEDIA_ROOT
+)
+
+urlpatterns += i18n_patterns(
+    path(r'form/', include('form.urls')),
+    path(r'transaction/', include('transaction.urls')),
 )

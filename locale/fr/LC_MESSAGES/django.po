@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-03 17:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gateway/constants.py:4
+msgid "Bahamta"
+msgstr "Bahamta"
+
+#: pay/constants.py:4
+msgid "IRR"
+msgstr "IRR"
+
+#: pay/constants.py:5
+msgid "USD"
+msgstr "$"
+
+#: pay/constants.py:6
+msgid "EUR"
+msgstr "€"
+
+#: pay/constants.py:7
+msgid "BTC"
+msgstr "BTC"
+
+#: pay/settings.py:182
+msgid "English"
+msgstr "English"
+
+#: pay/settings.py:183
+msgid "Farsi"
+msgstr "Farsi"
+
+#: pay/settings.py:184
+msgid "Arabic"
+msgstr "Arabe"
+
+#: pay/settings.py:185
+msgid "Swedish"
+msgstr "Suédoise"
+
+#: pay/settings.py:186
+msgid "French"
+msgstr "Française"
+
+#: pay/settings.py:187
+msgid "Espanol"
+msgstr ""
+
+#: templates/transaction/pay.html:137 templates/transaction/pay.html:258
+msgid "trace_no"
+msgstr "Numéro de trace"
+
+#: templates/transaction/pay.html:175 templates/transaction/pay.html:255
+msgid "wage"
+msgstr "Salaire"
+
+#: templates/transaction/pay.html:185 templates/transaction/pay.html:186
+#: templates/transaction/pay.html:253
+msgid "amount"
+msgstr "Montante"
+
+#: templates/transaction/pay.html:191
+msgid "gateway"
+msgstr "Passerelle"
+
+#: templates/transaction/pay.html:210
+msgid "continue"
+msgstr "Continuez"
+
+#: templates/transaction/pay.html:235
+msgid "pay"
+msgstr "Payer"
+
+#: templates/transaction/pay.html:251
+msgid "payment_bill"
+msgstr "Facture de paiement"
+
+#: templates/transaction/pay.html:257
+msgid "date"
+msgstr "Date"
+
+#: templates/transaction/pay.html:263
+msgid "link"
+msgstr "Lien"
+
+#: transaction/views.py:391
+msgid "Please enter a valid amount."
+msgstr "S'il vous plaît entrer un montant valide."
+
+#: transaction/views.py:394
+msgid "Please choose a gateway."
+msgstr "S'il vous plaît choisir une passerelle."
+
+#: transaction/views.py:398
+#, python-format
+msgid "The minimum acceptable price is %(amount) %(currency)"
+msgstr "Le prix minimum acceptable est %(amount) %(currency)"
+
+#: transaction/views.py:408
+#, python-format
+msgid "The maximum acceptable price is %(amount) %(currency)"
+msgstr "Le prix maximum acceptable est %(amount) %(currency)"
+
+#: user/models.py:18
+msgid "email address"
+msgstr "Adresse e-mail"
+
+#~ msgid "Pashto"
+#~ msgstr "Pachto"

@@ -3,6 +3,9 @@ import random
 from khayyam import JalaliDatetime
 from dateutil import tz
 import datetime
+from django.utils import translation
+from django.utils.timezone import localtime
+
 
 from_zone = tz.gettz('UTC')
 to_zone = tz.gettz('Asia/Tehran')
@@ -51,6 +54,8 @@ def humanizeAmount(amount):
 
 
 def persianiser(inputStr):
+    if translation.get_language() not in ['fa', 'ar', 'ps']:
+        return inputStr
     inputStr = str(inputStr)
     res = ''
     for lttr in inputStr:
@@ -75,6 +80,8 @@ def convertToDigit(inputStr):
 
 def getJalaliDateFromISO(isoDate):
     dt = datetime.datetime.strptime(isoDate, '%Y-%m-%dT%H:%M:%S.%fZ')
+    if translation.get_language() not in ['fa', 'ps']:
+        return localtime(dt).strftime('%Y-%m-%d %H:%M:%S')
     dt = dt.replace(tzinfo=from_zone)
     dt = dt.astimezone(to_zone)
     jl = JalaliDatetime(dt)
@@ -85,6 +92,8 @@ def getJalaliDateFromISO(isoDate):
 def getJalaliDate(dt):
     if not dt:
         return ''
+    if translation.get_language() not in ['fa', 'ps']:
+        return localtime(dt).strftime('%Y-%m-%d %H:%M:%S')
     dt = dt.replace(tzinfo=from_zone)
     dt = dt.astimezone(to_zone)
     jl = JalaliDatetime(dt)

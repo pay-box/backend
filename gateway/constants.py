@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext_lazy as _
+
 GATEWAY_TYPES = (
-    ("bahamta", "Bahamta"),
+    ("bahamta", _("Bahamta")),
 )

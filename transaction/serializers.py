@@ -12,6 +12,7 @@ class RequestTransactionMakePost(serializers.Serializer):
     gateway_id = serializers.IntegerField(required=False)
     phone_number = serializers.CharField(required=False)
     email = serializers.CharField(required=False)
+    note = serializers.CharField(required=False)
     username = serializers.CharField(required=False)
     continue_url = serializers.CharField(required=False)
     currency = serializers.ChoiceField(

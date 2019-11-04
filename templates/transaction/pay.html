@@ -1,6 +1,8 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
+    {% get_current_language as LANGUAGE_CODE %}
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,96 +10,114 @@
         <!-- Core CSS - Include with every page -->
         
         <!-- <link href="{% static 'css/fonts.css' %}" rel="stylesheet"> -->
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+        
         <link href="{% static 'css/payment.css' %}" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+        <link href="{% static 'css/normalizer.css' %}" rel="stylesheet">
+        {% if LANGUAGE_CODE in 'fa,ar,ps' %}
         <style>
             @font-face {
-                font-family: IRANSans;
+                font-family: Vazir;
                 font-style: normal;
                 font-weight: 900;
-                src: url("{% static 'fonts/eot/IRANSansWeb_Black.eot' %}");
-                src: url("{% static 'fonts/eot/IRANSansWeb_Black.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
-                    url("{% static 'fonts/woff2/IRANSansWeb_Black.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-                    url("{% static 'fonts/woff/IRANSansWeb_Black.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-                    url("{% static 'fonts/ttf/IRANSansWeb_Black.ttf' %}") format('truetype');
+                src: url("{% static 'fonts/eot/Vazir-Black-FD.eot' %}");
+                src: url("{% static 'fonts/eot/Vazir-Black-FD.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/Vazir-Black-FD.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/Vazir-Black-FD.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/Vazir-Black-FD.ttf' %}") format('truetype');
             }
             @font-face {
-                font-family: IRANSans;
+                font-family: Vazir;
                 font-style: normal;
                 font-weight: bold;
-                src: url("{% static 'fonts/eot/IRANSansWeb_Bold.eot' %}");
-                src: url("{% static 'fonts/eot/IRANSansWeb_Bold.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
-                    url("{% static 'fonts/woff2/IRANSansWeb_Bold.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-                    url("{% static 'fonts/woff/IRANSansWeb_Bold.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-                    url("{% static 'fonts/ttf/IRANSansWeb_Bold.ttf' %}") format('truetype');
+                src: url("{% static 'fonts/eot/Vazir-Bold-FD.eot' %}");
+                src: url("{% static 'fonts/eot/Vazir-Bold-FD.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/Vazir-Bold-FD.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/Vazir-Bold-FD.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/Vazir-Bold-FD.ttf' %}") format('truetype');
             }
             @font-face {
-                font-family: IRANSans;
+                font-family: Vazir;
                 font-style: normal;
                 font-weight: 500;
-                src: url("{% static 'fonts/eot/IRANSansWeb_Medium.eot' %}");
-                src: url("{% static 'fonts/eot/IRANSansWeb_Medium.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
-                    url("{% static 'fonts/woff2/IRANSansWeb_Medium.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-                    url("{% static 'fonts/woff/IRANSansWeb_Medium.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-                    url("{% static 'fonts/ttf/IRANSansWeb_Medium.ttf' %}") format('truetype');
+                src: url("{% static 'fonts/eot/Vazir-Medium-FD.eot' %}");
+                src: url("{% static 'fonts/eot/Vazir-Medium-FD.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/Vazir-Medium-FD.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/Vazir-Medium-FD.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/Vazir-Medium-FD.ttf' %}") format('truetype');
             }
             @font-face {
-                font-family: IRANSans;
+                font-family: Vazir;
                 font-style: normal;
                 font-weight: 300;
-                src: url("{% static 'fonts/eot/IRANSansWeb_Light.eot' %}");
-                src: url("{% static 'fonts/eot/IRANSansWeb_Light.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
-                    url("{% static 'fonts/woff2/IRANSansWeb_Light.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-                    url("{% static 'fonts/woff/IRANSansWeb_Light.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-                    url("{% static 'fonts/ttf/IRANSansWeb_Light.ttf' %}") format('truetype');
+                src: url("{% static 'fonts/eot/Vazir-Light-FD.eot' %}");
+                src: url("{% static 'fonts/eot/Vazir-Light-FD.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/Vazir-Light-FD.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/Vazir-Light-FD.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/Vazir-Light-FD.ttf' %}") format('truetype');
             }
             @font-face {
-                font-family: IRANSans;
+                font-family: Vazir;
                 font-style: normal;
                 font-weight: 200;
-                src: url("{% static 'fonts/eot/IRANSansWeb_UltraLight.eot' %}");
-                src: url("{% static 'fonts/eot/IRANSansWeb_UltraLight.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
-                    url("{% static 'fonts/woff2/IRANSansWeb_UltraLight.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-                    url("{% static 'fonts/woff/IRANSansWeb_UltraLight.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-                    url("{% static 'fonts/ttf/IRANSansWeb_UltraLight.ttf' %}") format('truetype');
+                src: url("{% static 'fonts/eot/Vazir-Thin-FD.eot' %}");
+                src: url("{% static 'fonts/eot/Vazir-Thin-FD.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/Vazir-Thin-FD.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/Vazir-Thin-FD.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/Vazir-Thin-FD.ttf' %}") format('truetype');
             }
             @font-face {
-                font-family: IRANSans;
+                font-family: Vazir;
                 font-style: normal;
                 font-weight: normal;
-                src: url("{% static 'fonts/eot/IRANSansWeb.eot' %}");
-                src: url("{% static 'fonts/eot/IRANSansWeb.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
-                    url("{% static 'fonts/woff2/IRANSansWeb.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-                    url("{% static 'fonts/woff/IRANSansWeb.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-                    url("{% static 'fonts/ttf/IRANSansWeb.ttf' %}") format('truetype');
+                src: url("{% static 'fonts/eot/Vazir-FD.eot' %}");
+                src: url("{% static 'fonts/eot/Vazir-FD.eot#iefix' %}") format('embedded-opentype'),  /* IE6-8 */
+                    url("{% static 'fonts/woff2/Vazir-FD.woff2' %}") format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+                    url("{% static 'fonts/woff/Vazir-FD.woff' %}") format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+                    url("{% static 'fonts/ttf/Vazir-FD.ttf' %}") format('truetype');
             }
-
+            *
+            {
+                font-family: Vazir !important;
+            }
         </style>
+        {% else %}
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+            <style>
+            *
+            {
+                font-family: 'Open Sans', sans-serif !important;
+            }
+            </style>
+        {% endif %}
     </head>
-    <body class="rtl {{state}}">
-        <div id="topPage" style="background-color: {{background_color}};">
-			<table class="logoPlate nameLogoBox">
-                <tr>
-                    <td class="logoBox">
-                        {% if logo %}
-                            <img src="{{logo}}" />
-                        {% else %}
-                        <img src="{% static 'images/logo.png' %}">
-                        {% endif %}
-                    </td>
-                    <td class="nameBox" style="color: {{text_color}};">
-                        <p>{{title}}</p>
-                    </td>
-                </tr>
-            </table>
-            <form action="{{url}}" method="post">
+    
+    <body class="{% if LANGUAGE_CODE in 'fa,ar,ps' %} rtl {% endif %} {{state}}" style="background-color: {{background_color}};">
+        
+        <form action="{{url}}" method="post">
 			{% if state == 'paid' %}
-			<div class="detailPlate center big">
+			<div class="detailPlate center big {{state}}">
 			{% else %}
-			<div class="detailPlate center">
+			<div class="detailPlate center {{state}}">
             {% endif %}
+                {% get_current_language as LANGUAGE_CODE %}
+                <div class="logoPlate">
+                    {% if logo %}
+                        <img class="mainLogo" src="{{logo}}" />
+                    {% else %}
+                        <img class="mainLogo" src="{% static 'images/logo.png' %}">
+                    {% endif %}
+                    <h1 class="mainTitle">{{title}}</h1>
+                    <span class="spacer"></span>
+                </div>
                 {% if state == 'not_found' %}
-                <div class="box">
+                    {% if message %}
+                    <div class="errorDetailBox">
+						<p class="text">
+                        {{message}}
+						</p>
+                    </div>
+                    {% else %}
                     <div class="errorDetailBox">
 						<p class="text">
                         تراکنش مورد یافت نشد و یا زمان پرداخت آن گذشته است.
@@ -105,7 +125,7 @@
                         لطفا مجدد تلاش کنید.
 						</p>
                     </div>
-			    </div>
+                    {% endif %}
                 {% else %}
                 
                     <div class="box">
@@ -114,7 +134,7 @@
                             <img class="photo" src="{% static 'images/svg/payed.svg' %}">
                             <div class="detail">
                                 <p>	
-                                <span>کد رهگیری: {{trace_no}}</span>
+                                <span>{% trans "trace_no" %}: {{trace_no}}</span>
                                 <br/>
                                 <span>{{date}}</span>
                                 </p>
@@ -124,62 +144,74 @@
                             <div class="payed">
                                 <img class="photo" src="{% static 'images/svg/cancel.svg' %}">
                             </div>
-                            <div class="errorDetailBox">
-                                <p class="text small">
-                                پرداخت با مشکل مواجه شد. در صورتی که مبلغ پرداخت از حساب شما کسر شده است، حد اکثر تا ۷۲ ساعت به حساب شما باز خواهد گشت.
-                                </p>
-                            </div>
-                            
                         {% endif %}
-                        {% if state == 'error' %}
+                    </div>
+                    {% if state == 'rejected' %}
                         <div class="errorDetailBox">
-                            <p class="text">
-                            {{message}}
+                            <p class="text small">
+                            پرداخت با مشکل مواجه شد. در صورتی که مبلغ پرداخت از حساب شما کسر شده است، حد اکثر تا ۷۲ ساعت به حساب شما باز خواهد گشت.
                             </p>
                         </div>
-                        {% endif %}
-                        {% if amount %}
+                    {% endif %}
+                    
+                    {% if message %}
+                    <div class="errorDetailBox">
+                        <p class="text">
+                        {{message}}
+                        </p>
+                    </div>
+                    {% endif %}
+                    {% if amount %}
                         <table class="amountBox">
                             <tr class="big">
                                 <td>
-                                    <p style="color: {{text_color}};">{{amount}} ریال</p>
+                                    <p>{{amount}} {% trans currency %}</p>
                                 </td>
                             </tr>
                             {% if wage %}
                             <tr class="small">
                                 <td class="wageBox">
-                                    <p style="color: {{text_color}};">+ {{wage}} کارمزد ریال</p>
+                                    <p>+ {{wage}} {% trans "wage" %} {% trans currency %}</p>
                                 </td>
                             </tr>
                             {% endif %}
                             
                         </table>
                         <input name="amount" value="{{amount_value}}" hidden />
-                        {% else %}
-                        <table class="amountBox">
-                            <tr class="big">
-                                <td>
-                                    <input name="amount" />
-                                </td>
-                                <td>
-                                    <p style="color: {{text_color}};"> ریال</p>
-                                </td>
-                            </tr>
-                        </table>
+                    {% endif %}
+                    <div class="box">
                         
+                        {% if not amount %}
+                        <div class="inputBox">
+                            <div class="input-field col s6">
+                                <input placeholder="{% trans "amount" %}" name="amount" type="number" class="validate">
+                                <label for="amount">{% trans "amount" %}</label>
+                            </div>
+                            <p class="unit">{% trans currency %}</p>
+                        </div>
                         {% endif %}
-                        
+                        <h3 class="sectionTitle">{% trans "gateway" %}</h3>
+                        {% if gateways %}
+                            {% for item in gateways %}
+                                <div>
+                                    <label class="radioBox">
+                                        <input name="gateway" type="radio" value="{{gateway.id}}"/>
+                                        <span>{{item.title}}</span>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                        <div>
+                            <label class="radioBox">
+                                <input name="gateway" type="radio" value="{{gateway.id}}" checked="checked"/>
+                                <span>{{gateway.title}}</span>
+                            </label>
+                        </div>
+                        {% endif %}
+                        {% if continue_url %}
+                        <a class="waves-effect waves-light btn actionButton margined" href="{{continue_url}}" onclick="showLoading()">{% trans "continue" %}</a>
+                        {% endif %}
                         <table class="iconTextBox">
-                            {% if gateway %}
-                            <tr>
-                                <td class="iconBox">
-                                    <img src="{% static 'images/svg/account.svg' %}">
-                                </td>
-                                <td class="textBox">
-                                    <p style="color: {{text_color}};">{{gateway.title}}</p>
-                                </td>
-                            </tr>
-                            {% endif %}
                             {% if payer %}
                             <tr>
                                 <td class="iconBox">
@@ -201,46 +233,8 @@
                             </tr>
                             {% endif %}
                         </table>
-                        {% if gateways %}
-                            <div class="centerPlate">
-                                <select class="chooseGateway" name="gateway">
-                                    {% for item in gateways %}
-                                        <option value="{{item.id}}">{{item.title}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        {% else %}
-                            <input name="gateway" value="{{gateway.id}}"  hidden/>
-                        {% endif %}
-                        {% if continue_url %}
-                        
-                        <table class="payButtonBox">
-                            <tr>
-                                <td class="loaderBox">
-                                    <div id="loading" class="spinner hide"><i></i></div>
-                                </td>
-                                <td class="buttonBox">
-                                    <a href="{{continue_url}}" onclick="showLoading()">ادامه</a>
-                                </td>
-                                <td class="loaderBox">
-                                </td>
-                            </tr>
-                        </table>
-                        {% endif %}
                         {% if state == 'pay' or state == 'error'%}
-                        
-                        <table class="payButtonBox">
-                            <tr>
-                                <td class="loaderBox">
-                                    <div id="loading" class="spinner hide"><i></i></div>
-                                </td>
-                                <td class="buttonBox">
-                                    <button type="submit" onclick="showLoading()">پرداخت</button>
-                                </td>
-                                <td class="loaderBox">
-                                </td>
-                            </tr>
-                        </table>
+                        <button class="waves-effect waves-light btn actionButton margined" type="submit" onclick="showLoading()">{% trans "pay" %}</button>
                         {% endif %}
                     </div>
                 
@@ -250,38 +244,85 @@
 		{% if state == 'paid' %}
 			<img onclick="printDiv()" class="printButton" src="{% static 'images/svg/print.svg' %}">
 		{% endif %}
-		</div>
 		{% if state == 'paid' %}
 		<div id="printPlate">
 			<h2 class="orgName">پرداخت</h2>
 			<p class="subtitle">رسید پرداخت موفقیت آمیز قبض با مشخصات زیر در درگاه پرداخت {{title}}</p>
 			<img class="logo" src="{{logo}}">
 			<h3 class="sectionTitle double">
-				رسید پرداخت
+				{% trans "payment_bill" %}
 			</h3>
-			<p class="info">مبلغ: {{amount}} ریال</p>
+			<p class="info">{% trans "amount" %}: {{amount}} {% trans currency %}</p>
 			{% if wage %}
-			<p class="info">کارمزد: {{wage}} ریال</p>
+			<p class="info">{% trans "wage" %}: {{wage}} {% trans currency %}</p>
 			{% endif %}
-			<p class="info">تاریخ: {{date}}</p>
-            <p class="info">کد رهگیری: {{trace_no}}</p>
+			<p class="info">{% trans "date" %}: {{date}}</p>
+            <p class="info">{% trans "trace_no" %}: {{trace_no}}</p>
             {% if subject %}
-            <p class="info">بابت: {{subject}}</p>
+            <p class="info">"{% trans note %}": {{subject}}</p>
             {% endif %}
             {% if link %}
-            <p class="info">لینک: <a href="{{url}}">{{url}}</a></p>
+            <p class="info">{% trans "link" %}: <a href="{{url}}">{{url}}</a></p>
             {% endif %}
         </div>
         {% endif %}
-        <script src = "{% static 'js/jquery.min.js' %}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+        <div id="changeLang">
+            <div class="langButton dropdown-trigger" data-target='languageDropDown'>
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                {% if language.code == LANGUAGE_CODE %}
+                <img class="icon" src="{% static 'images/svg/lang.svg' %}">
+                <p class="title">{{language.name_local}}</p>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Dropdown Structure -->
+            <ul id='languageDropDown' class='dropdown-content'>
+                {% for language in languages %}
+                <li>
+                    <div class="langBox {% if language.code == LANGUAGE_CODE %} selected {%endif%}" onclick="selectLang('{{language.code}}')">
+                        {% with 'images/lang/'|add:language.code|add:'.svg' as image_static %}
+                            <img class="icon" src="{% static image_static %}"/> 
+                        {% endwith %}
+                        <p class="title">{{language.name_local|title}}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form id="changeLangForm" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <!-- <input name="next" type="hidden" value="{{ url }}"> -->
+            <input id="languageValue" name="language" type="hidden">
+            <!-- <select name="language">
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            <img class="mainLogo" src="{{logo}}" /> {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select> -->
+        </form>
+        <script src="{% static 'js/materialize.min.js' %}"></script>
         <script>
-            $(document).ready(function() {
-                $('.chooseGateway').select2();
-            });
             function printDiv() {
 				window.print();
-			}
+            }
+            var changeLang = document.getElementById("changeLang");
+            changeLang.addEventListener("change", function() {
+                
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.dropdown-trigger');
+                var instances = M.Dropdown.init(elems, {});
+            });
+            function selectLang(lang) {
+                document.getElementById("languageValue").value = lang;
+                document.getElementById("changeLangForm").submit();
+            }
         </script>
+        
     </body>
 </html>

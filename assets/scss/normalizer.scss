@@ -1,0 +1,196 @@
+$primaryColor: #327F8F;
+$seconderyTextColor: #F0F0F0;
+$tertiaryTextColor: #FCF1CE;
+$darkTextColor: #454545;
+$grayColor: #959595;
+$liteGrayColor: #BEBEBE;
+$darkMainColor : #d7a221;
+$payedColor : #45c175;
+$issuedColor : #4585c1;
+$canceledColor : #BCBEC0;
+$canceledBackgroundColor : #808080;
+$errorColor: #ff6464;
+$payColor: #00c176;
+$darkPayColor: #017f4d;
+$mainBoxBackgroundColor: #FFFFFF;
+
+$primaryTextColor : #677682;
+$secondaryTextColor : #757575;
+$tertiaryTextColor : #9E9E9E;
+$fourthTextColor : #C6C6D0;
+$liteTextColor: #FFFFFF;
+
+$borderColor: $fourthTextColor;
+
+
+body
+{
+    .detailPlate .box .inputBox input
+    {
+        padding-right: 2rem;
+        padding-left: 0.5rem;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+    #languageDropDown
+    {
+        padding: 0rem;
+        width: 9rem !important;
+        li
+        {
+            height: auto;
+            min-height: 0px;
+            
+        }
+    }
+    #changeLang
+    {
+        display: block;
+        width: auto;
+        position: fixed;
+        left: 2rem;
+        top: 1rem;
+    }
+    .printButton
+    {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+    }
+    .langButton
+    {
+        display: flex;
+        flex-direction: row;
+        .icon
+        {
+            width: 2rem;
+            margin: 0rem 0.5rem;
+        }
+        .title
+        {
+            font-size: 1.2rem;
+            color: $liteTextColor;
+        }
+    }
+    .langBox
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.8rem 0rem;
+        .icon
+        {
+            width: 2rem;
+            margin: 0rem 0.5rem;
+        }
+        .title
+        {
+            font-size: 1rem;
+            color: $primaryTextColor;
+            margin: 0rem 0.5rem;
+        }
+        &.selected
+        {
+            background-color: rgba(50, 127, 143, 0.4);
+        }
+    }
+    .inputBox
+    {
+        display: inline-flex;
+        padding: 0.5rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: -1rem;
+        .input-field 
+        {
+            margin: 0px;
+        }
+        input
+        {
+            border: 1px solid #9e9e9e !important;
+            border-radius: 3px !important;
+        }
+        .unit
+        {
+            color: $borderColor;
+            margin: 0px;
+            margin-top: -0.5rem;
+        }
+        input:focus, input:hover
+        {
+            border: 1px solid $primaryColor !important;
+        }
+    }
+    .sectionTitle
+    {
+        font-size: 0.9rem;
+        color: $primaryTextColor;
+        margin-top: 1rem;
+        text-align: start;
+        margin-bottom: 0.4rem;
+    }
+    .input-field>label:not(.label-icon).active {
+        -webkit-transform: translateY(-10px) scale(0.8);
+        transform: translateY(-10px) scale(0.8);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        width: auto !important;
+        padding: 0rem 0.4rem;
+        background-color: white;
+    }
+}
+body.rtl
+{
+    .input-field>label:not(.label-icon).active {
+        -webkit-transform: translateY(-10px) scale(0.8);
+        transform: translateY(-10px) scale(0.8);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        left: auto;
+        right: 0.75rem;
+        width: auto !important;
+        padding: 0rem 0.4rem;
+        background-color: white;
+    }
+    .detailPlate .box .inputBox input
+    {
+        padding-left: 2rem !important;
+        padding-right: 0.5rem !important;
+    }
+    .inputBox
+    {
+        margin-left: 0rem !important;
+        margin-right: -1rem !important;
+    }
+    .printButton
+    {
+        position: fixed;
+        bottom: 2rem;
+        right: auto;
+        left: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+    }
+    #changeLang
+    {
+        display: block;
+        width: auto;
+        position: fixed;
+        right: 2rem;
+        left: auto;
+        top: 1rem;
+    }
+}

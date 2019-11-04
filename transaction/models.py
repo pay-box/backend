@@ -21,7 +21,7 @@ class Transaction(models.Model):
     ref_num = models.CharField(max_length=100)
     res_num = models.CharField(max_length=100, null=True, blank=True)
     status = models.CharField(max_length=30, choices=STATUS_TYPES)
-    note = models.CharField(max_length=300)
+    note = models.CharField(max_length=300, null=True, blank=True)
     random = models.CharField(max_length=6, default=generate_random)
     form = models.ForeignKey(
         Form,
@@ -89,7 +89,11 @@ class Transaction(models.Model):
         user = User.objects.filter(username=data['username']).first()
         application = None
         form = None
+        note = None
+        if 'note' in data:
+            note = data['note']
         if 'application' in data:
+            print(data['application'])
             application = Application.objects.filter(
                 id=data['application']
             ).first()
@@ -114,6 +118,7 @@ class Transaction(models.Model):
             details=details,
             application=application,
             gateway=gateway,
+            note=note,
             res_num=ref_num,
             ref_num=ref_num,
             status=status
@@ -156,15 +161,17 @@ class Transaction(models.Model):
             gateways,
             application,
             continue_url,
-            form=None):
+            form=None,
+            note=None):
         ref_num = generate_unique_id()
         url = None
         gateway = None
-        if gateways.count() == 1 and amount:
+        if gateways.count() == 1:
             gateway = gateways.first()
-            if gateway.type == 'bahamta':
+            if gateway.type == 'bahamta' and amount:
                 bahamtaTerminal = BahamtaTerminal(gateway)
                 url = bahamtaTerminal.make_request(ref_num, amount)
+
         transaction = {
             'ref_num': ref_num,
             'amount': amount,
@@ -177,6 +184,8 @@ class Transaction(models.Model):
                 transaction['gateway'] = transaction['gateway'][0]
             except Exception:
                 pass
+        if note:
+            transaction['note'] = note
         if form:
             transaction['form'] = form.id
             transaction['title'] = form.title
@@ -184,6 +193,11 @@ class Transaction(models.Model):
                 transaction['logo'] = form.logo.url
         if application:
             transaction['application'] = application.id,
+            transaction['application'] = gateway.id,
+            try:
+                transaction['application'] = transaction['application'][0]
+            except Exception:
+                pass
             transaction['title'] = application.title
             if application.logo:
                 transaction['logo'] = application.logo.url
