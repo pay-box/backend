@@ -150,6 +150,7 @@ class TransactionMakeView(APIView):
                 return Response(
                     {
                         'url': url,
+                        'relative_url': url.replace(settings.BASE_URL, ""),
                         'ref_num': transaction['ref_num']
                     },
                     status.HTTP_200_OK
@@ -298,6 +299,7 @@ def transaction_payment_view(request, ref_num):
                     'note': transaction.get('note', None),
                     'background_color': config.pay_background_color,
                     'url': url,
+                    'relative_url': url.replace(settings.BASE_URL, ""),
                     # 'form': transaction.form,
                     'currency': transaction['currency'].upper(),
                     'payer': payer,
@@ -331,6 +333,7 @@ def transaction_payment_view(request, ref_num):
                 '%s-%d' % (transaction.random, transaction.id)
             ),
             'url': url,
+            'relative_url': url.replace(settings.BASE_URL, ""),
             'note': transaction.note,
             'date': getJalaliDate(transaction.created_at),
             'payer': payer,
@@ -388,6 +391,7 @@ def transaction_payment_view(request, ref_num):
                 'note': transaction.get('note', None),
                 'user': user,
                 'url': url,
+                'relative_url': url.replace(settings.BASE_URL, ""),
                 # 'form': transaction.form,
                 'currency': transaction['currency'].upper(),
                 'payer': payer,

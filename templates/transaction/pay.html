@@ -293,7 +293,7 @@
             </ul>
         </div>
         <form id="changeLangForm" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-            <input name="next" type="hidden" value="{{url}}">
+            <input name="next" type="hidden" value="{{relative_url}}">
             <input id="languageValue" name="language" type="hidden">
             <!-- <select name="language">
                 {% get_available_languages as LANGUAGES %}
