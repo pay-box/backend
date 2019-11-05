@@ -1,0 +1,300 @@
+
+$primaryColor: #22819F;
+$seconderyTextColor: #F0F0F0;
+$tertiaryTextColor: #FCF1CE;
+$darkTextColor: #454545;
+$grayColor: #959595;
+$liteGrayColor: #BEBEBE;
+$darkMainColor : #f5ce21;
+$payedColor : #45c175;
+$issuedColor : #4585c1;
+$canceledColor : #BCBEC0;
+$canceledBackgroundColor : #808080;
+$errorColor: #ff6464;
+$payColor: #00c176;
+$darkPayColor: #017f4d;
+$mainBoxBackgroundColor: #FFFFFF;
+$topBackgroundColor: #E8E8E3;
+
+$primaryTitleColor : #677682;
+$primaryTextColor : #565656;
+$secondaryTextColor : #757575;
+$tertiaryTextColor : #9E9E9E;
+$fourthTextColor : #C6C6D0;
+$liteTextColor: #FFFFFF;
+
+$borderColor: $fourthTextColor;
+
+.spacer
+{
+    flex: 1 1 auto;
+}
+
+#header
+{
+    position: fixed;
+    left: 0px;
+    width: 100%;
+    top: 0px;
+    background-color: $primaryColor;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .logo
+    {
+        width: 3rem;
+        margin: 0rem 0.5rem;
+    }
+    .title
+    {
+        color: $liteTextColor;
+        font-size: 1.6rem;
+        margin: 0px;
+    }
+}
+
+body
+{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+#topPage
+{
+    height: 80vh;
+    background-color: $topBackgroundColor;
+    background-image: url('../images/intro/back-top-left.png'), url('../images/intro/back-bottom-right.png');
+    background-position: left top, right bottom;
+    background-size: 40vh, 40vh;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .logo
+    {
+        width: 14rem;
+        margin-bottom: 2rem;
+    }
+    .title
+    {
+        color: $primaryTitleColor;
+        font-size: 2.5rem;
+        margin: 0px;
+    }
+}
+
+footer
+{
+    padding: 2rem 1rem;
+    padding-bottom: 2rem;
+    background-color: $primaryColor;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title
+    {
+        text-align: center;
+        font-size: 1.8rem;
+        color: $liteTextColor;
+        margin-bottom: 1rem;
+        margin-top: 0px;
+    }
+}
+
+.featureBox
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    .photoBox
+    {
+        flex: 0.5;
+        img
+        {
+            height: 11rem;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    .contentBox
+    {
+        flex: 0.5;
+        .title
+        {
+            color: $primaryTitleColor;
+            font-weight: 500;
+            font-size: 1.7rem;
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 0.4rem;
+        }
+        .text
+        {
+            width: 60%;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            text-align: justify;
+            color: $primaryTextColor;
+        }
+    }
+    &.reverse
+    {
+        flex-direction: row-reverse;
+    }
+    &.colored
+    {
+        background-color: #F0F0F0;
+    }
+}
+
+#descriptionPage
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    .box
+    {
+        max-width: 64rem;
+        margin: 0 auto;
+        .title
+        {
+            color: $primaryTitleColor;
+            font-weight: 500;
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 1.5rem;
+        }
+        .text
+        {
+            width: 100%;
+            margin: 0 auto;
+            text-align: justify;
+            color: $primaryTextColor;
+        }
+    }
+}
+
+.contactBox
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    .contactItem
+    {
+        width: 2rem;
+        height: 2rem;
+        margin: 0rem 0.5rem;
+        fill: $liteTextColor;
+        -webkit-transition:0.3s ease all;
+           -moz-transition:0.3s ease all;
+            -ms-transition:0.3s ease all;
+             -o-transition:0.3s ease all;
+                transition:0.3s ease all;
+        &:hover
+        {
+            fill: $darkMainColor;
+            -webkit-transition:0.3s ease all;
+               -moz-transition:0.3s ease all;
+                -ms-transition:0.3s ease all;
+                 -o-transition:0.3s ease all;
+                    transition:0.3s ease all;
+
+        }
+    }
+}
+
+@media screen and (max-width: 39.9375em) 
+{
+    #topPage
+    {
+        background-size: 25vh, 25vh;
+        .logo
+        {
+            width: 10rem;
+            margin-bottom: 1rem;
+        }
+        .title
+        {
+            color: $primaryTitleColor;
+            font-size: 2rem;
+            margin: 0px;
+        }
+    }
+
+    .featureBox
+    {
+        display: flex;
+        flex-direction: column !important;
+        justify-content: stretch;
+        align-items: center;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+        .photoBox
+        {
+            flex: 1;
+            img
+            {
+                height: 8rem;
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 2rem;
+            }
+        }
+        .contentBox
+        {
+            flex: 1;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            .title
+            {
+                color: $primaryTitleColor;
+                font-weight: 500;
+                font-size: 1.7rem;
+                text-align: center;
+                margin-top: 0px;
+                margin-bottom: 0.4rem;
+            }
+            .text
+            {
+                width: 100%;
+                margin: 0 auto;
+                text-align: justify;
+            }
+        }
+    }
+
+}
+
+body
+{
+    #changeLang
+    {
+        left: auto;
+        right: 2rem;
+    }
+}
+
+body.rtl
+{
+    direction: rtl !important;
+    #changeLang
+    {
+        left: 2rem;
+        right: auto;
+    }
+    #topPage
+    {
+        background-image: url('../images/intro/back-top-right.png'), url('../images/intro/back-bottom-left.png');
+        background-position: right top, left bottom;
+    }
+}

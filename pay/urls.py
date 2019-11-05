@@ -22,6 +22,8 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+from user import views as user_views
+from form import views as form_views
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -39,6 +41,8 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    path('', user_views.intro, name='index'),
+    path('forms', form_views.form_list_view, name='index'),
     path('admin/', admin.site.urls),
     url(r'^docs/$', schema_view.with_ui('redoc', cache_timeout=0),
         name='schema-redoc'),
@@ -55,6 +59,7 @@ urlpatterns += static(
 )
 
 urlpatterns += i18n_patterns(
+    path('', user_views.intro, name='index'),
     path(r'form/', include('form.urls')),
     path(r'transaction/', include('transaction.urls')),
 )

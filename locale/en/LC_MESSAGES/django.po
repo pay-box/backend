@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-03 17:17+0000\n"
+"POT-Creation-Date: 2019-11-05 05:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,12 +39,12 @@ msgid "BTC"
 msgstr "BTC"
 
 #: pay/settings.py:182
-msgid "English"
-msgstr "English"
-
-#: pay/settings.py:183
 msgid "Farsi"
 msgstr "Farsi"
+
+#: pay/settings.py:183
+msgid "English"
+msgstr "English"
 
 #: pay/settings.py:184
 msgid "Arabic"
@@ -62,57 +62,140 @@ msgstr "French"
 msgid "Espanol"
 msgstr ""
 
-#: templates/transaction/pay.html:137 templates/transaction/pay.html:258
+#: templates/intro.html:92 templates/intro.html:96
+msgid "app_title"
+msgstr "Pay Box"
+
+#: templates/intro.html:100
+msgid "what_is_paybox"
+msgstr "What is Pay Box?"
+
+#: templates/intro.html:101
+msgid "what_is_paybox_description"
+msgstr ""
+"Pay Box is a service for handling payments with multiple gateways."
+
+#: templates/intro.html:109
+msgid "transparency"
+msgstr "Transparency"
+
+#: templates/intro.html:110
+msgid "transparency_description"
+msgstr ""
+"You can develop other parts of your service encapsulated and will be change-free about payment issues. No matter what payment is availble or which one is disabled and what their type are."
+"Your code just send a request and receive payment url to show to your users."
+
+#: templates/intro.html:118
+msgid "open_source"
+msgstr "Open Source"
+
+#: templates/intro.html:119
+msgid "open_source_description"
+msgstr ""
+"Pay Box is an open source project that you can ensure that how everything works and also It can develop in mutiple ways and always have new features."
+"If you have any suggestions or bug report, Please open an issue in Github repo and let me know what it is"
+
+#: templates/intro.html:127
+msgid "cloud"
+msgstr "Cloud Solution"
+
+#: templates/intro.html:128
+msgid "cloud_description"
+msgstr ""
+"You can let us handle your payments. We setup a server for you and always mantain and monitor your payment service."
+"If you are insterested, contact us"
+
+
+#: templates/intro.html:136
+msgid "contribute"
+msgstr "Contribute"
+
+#: templates/intro.html:137
+msgid "contribute_description"
+msgstr ""
+"Any idea is very welcomed, feel free to contribute your or other's ideas. You can read more about it in this link."
+
+#: templates/intro.html:145
+msgid "feedback"
+msgstr "Feedback"
+
+#: templates/intro.html:146
+msgid "feedback_description"
+msgstr ""
+"Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+"Lorem Ipsum has been the industry's standard dummy text ever since the "
+"1500s, when an unknown printer took a galley of type and scrambled it to "
+"make a type specimen book. It has survived not only five centuries, but also "
+"the leap into electronic typesetting, remaining essentially unchanged."
+
+#: templates/intro.html:154
+msgid "donate"
+msgstr "Donation"
+
+#: templates/intro.html:155
+msgid "donate_description"
+msgstr ""
+"Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+"Lorem Ipsum has been the industry's standard dummy text ever since the "
+"1500s, when an unknown printer took a galley of type and scrambled it to "
+"make a type specimen book. It has survived not only five centuries, but also "
+"the leap into electronic typesetting, remaining essentially unchanged."
+
+#: templates/intro.html:159
+msgid "Stay in touch"
+msgstr "Stay in Touch"
+
+#: templates/transaction/pay.html:137 templates/transaction/pay.html:260
 msgid "trace_no"
 msgstr "Trace Number"
 
-#: templates/transaction/pay.html:175 templates/transaction/pay.html:255
+#: templates/transaction/pay.html:174 templates/transaction/pay.html:257
 msgid "wage"
 msgstr "Wage"
 
-#: templates/transaction/pay.html:185 templates/transaction/pay.html:186
-#: templates/transaction/pay.html:253
+#: templates/transaction/pay.html:187 templates/transaction/pay.html:188
+#: templates/transaction/pay.html:255
 msgid "amount"
 msgstr "Amount"
 
-#: templates/transaction/pay.html:191
+#: templates/transaction/pay.html:193
 msgid "gateway"
 msgstr "Gateway"
 
-#: templates/transaction/pay.html:210
+#: templates/transaction/pay.html:212
 msgid "continue"
 msgstr "Continue"
 
-#: templates/transaction/pay.html:235
+#: templates/transaction/pay.html:237
 msgid "pay"
 msgstr "Pay"
 
-#: templates/transaction/pay.html:251
+#: templates/transaction/pay.html:253
 msgid "payment_bill"
 msgstr "Payment Bill"
 
-#: templates/transaction/pay.html:257
+#: templates/transaction/pay.html:259
 msgid "date"
 msgstr "Date"
 
-#: templates/transaction/pay.html:263
+#: templates/transaction/pay.html:265
 msgid "link"
 msgstr "Link"
 
-#: transaction/views.py:391
+#: transaction/views.py:402
 msgid "Please enter a valid amount."
 msgstr "Please enter a valid amount."
 
-#: transaction/views.py:394
+#: transaction/views.py:405
 msgid "Please choose a gateway."
 msgstr "Please choose a gateway."
 
-#: transaction/views.py:398
+#: transaction/views.py:409
 #, python-format
 msgid "The minimum acceptable price is %(amount) %(currency)"
 msgstr "The minimum acceptable price is %(amount) %(currency)"
 
-#: transaction/views.py:408
+#: transaction/views.py:419
 #, python-format
 msgid "The maximum acceptable price is %(amount) %(currency)"
 msgstr "The maximum acceptable price is %(amount) %(currency)"
