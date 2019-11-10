@@ -7,6 +7,27 @@ from user import models
 User = get_user_model()
 
 
+def has_permission(permission):
+    def decorator(function):
+        def wrapper(*args, **kwargs):
+            request = args[1]
+            if not request.user.is_authenticated:
+                return Response(
+                    {"message": "شما باید دوباره وارد شوید."},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+            if not request.user.has_permission(permission):
+                return Response(
+                    {"message": "شما اجازه این کار را ندارید."},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+            return function(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 def app_has_permission():
     def decorator(function):
         def wrapper(*args, **kwargs):

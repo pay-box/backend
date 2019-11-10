@@ -3,7 +3,7 @@ from user.models import Config
 
 
 class Command(BaseCommand):
-    help = "Update Permissions"
+    help = "INIT CONFIG"
 
     def handle(self, *args, **kwargs):
         if Config.objects.count() == 0:

@@ -56,6 +56,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -225,3 +226,31 @@ CACHE_TEMP_TRANSACTION_TTL = 60 * 30
 
 MIN_PAYMENT_AMOUNT = 10000
 MAX_PAYMENT_AMOUNT = 500000000
+
+ACTIVATION_LINK = os.environ["BASE_URL"] + '/activate/%s/%s'
+
+EMAIL_TEMPLATE = {
+    'activation_code': {
+        'header': 'Activation Code',
+        'content': 'To login, use this code:',
+        'icon': BASE_URL + "/static/images/icons/activation_code.png"
+    }
+}
+
+EMAIL_FROM = os.environ["EMAIL_FROM"]
+EMAIL_PASSWORD = os.environ["EMAIL_PASSWORD"]
+EMAIL_SERVER = os.environ["EMAIL_SERVER"]
+
+EMAIL_HOST = EMAIL_SERVER
+EMAIL_HOST_USER = EMAIL_FROM
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+KAVENEGAR_API_KEY = os.environ['KAVENEGAR_API_KEY']
+KAVENEGAR_NUMBER = os.environ['KAVENEGAR_NUMBER']
+
+VERIFY_CODE_TTL = 900
+VERIFY_CODE_LOCK_TTL = 86400
+VERIFY_CODE_LOCK_LIMIT = 10

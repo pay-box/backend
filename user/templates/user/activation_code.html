@@ -1,0 +1,62 @@
+<!doctype html> 
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<meta name="viewport" content="width=device-width"/>
+  	
+  	</head>
+    <body style="background-color: #DEDEDE;margin:0px; width:100%;">
+      <div style="width:80%;margin-left:10%;margin-right: 10%; margin-top:1rem;margin-bottom:1rem">
+        <div style="margin-top:2rem; background-color:#22819F; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+          <div style="padding: 1rem">
+            <table style="margin-top: 0rem; margin-bottom: 1.5rem">
+              <tr>
+                <td style="width: 100%;"></td>
+                <td>
+                  <img style="height: 4rem;" src="{{logo_url}}"/>
+                </td>
+                
+              </tr>
+            </table>
+            {% if icon %}
+            <img src="{{icon}}" style="width:20%;margin-left:40%;margin-right: 40%;">
+            {% endif %}
+            <h2 style="color:#FFFFFF;font-size:2rem;font-family:sans-serif;font-weight:400;padding-left:1rem;padding-right:1rem;text-align: center; font-family: IRANSans, sans-serif">{{header}}</h2>
+          </div>
+        </div>
+        <div style="padding: 1rem; background-color: #FFFFFF; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+          <h5 style="font-size:1.3rem;font-family: IRANSans, sans-serif;margin-bottom:0.4rem;padding-left:1rem;padding-right:1rem;">{{title}}</h5>
+          <p style="font-family: IRANSans, sans-serif;margin-bottom:0.4rem;padding-left:1rem;padding-right:1rem;">
+            {{content}}
+            {% if url %}
+            <br/>
+            <a href="{{url}}" target="_blank">{{url}}</a>
+            {% endif%}
+          
+          <br/>
+          {% if code %}
+          <div style="background-color: #CDCDCD; padding: 2rem;color: #FFFFFF;text-align: center;border-radius: 5px;font-size: 2rem;width: 80%; margin: 0 auto;margin-top: 2rem;letter-spacing: 5px;font-weight: bold;">
+            {{code}}
+          </div>
+          {% endif %}
+          <br/>
+          <br/>
+          Kind Regards
+          <br/>
+  
+          </p>
+        </div>
+        <table style="width: 100%; margin-top: 0.7rem;">
+          <tr>
+            <td>
+              <a href="https://paybox.site" style="text-decoration: none;">
+                <h2 style="font-size: 2.1rem; line-height: 2.1rem; margin: 0px; font-weight: normal;font-family: IRANSans, sans-serif; color: #9F9F9F;">
+                  PayBox
+                </h2>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+  	</body>
+</html>

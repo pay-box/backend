@@ -27,13 +27,13 @@ from form import views as form_views
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Open Pay API",
+      title="PayBox API",
       default_version='v1',
       description="Make payment great again!",
-      terms_of_service="https://open-pay.ir/terms/",
-      contact=openapi.Contact(email="info@open-pay.ir"),
+      terms_of_service="https://paybox.site/terms/",
+      contact=openapi.Contact(email="info@paybox.site"),
       license=openapi.License(name="BSD License"),
-      url="https://open-pay.ir/api"
+      url="https://paybox.site/api"
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),
@@ -46,7 +46,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^docs/$', schema_view.with_ui('redoc', cache_timeout=0),
         name='schema-redoc'),
-    # path(r'user/', include('user.urls')),
+    path(r'user/', include('user.urls')),
     path(r'form/', include('form.urls')),
     # path(r'gateway/', include('gateway.urls')),
     path(r'transaction/', include('transaction.urls')),
