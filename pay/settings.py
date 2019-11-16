@@ -27,9 +27,11 @@ TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 DB_HOST = os.environ.get('DB_HOST', 'db')
 DB_NAME = os.environ.get('DB_NAME', 'pay')
 DB_PORT = int(os.environ.get('DB_PORT', '5432'))
+DB_ENGINE = os.environ.get('DB_ENGINE', 'django.db.backends.postgresql_psycopg2')
 
 MEDIAROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 STATICROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'static'))
+
 
 CELERY_RESULT_SERIALIZER = 'json'
 CELERYD_PREFETCH_MULTIPLIER = 1
@@ -132,7 +134,7 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': DB_ENGINE,
         'NAME': DB_NAME,
         'USER': 'postgres',
         'HOST': DB_HOST,
